@@ -1,11 +1,17 @@
 const ToDoModel = require('../models/ToDoModel')
 
 module.exports.getToDo = async(req, res) => {
-    const toDo = await ToDoModel.find()
-    res.send(toDo)
+    const toDos = await ToDoModel.find()
+    res.send(toDos)
 }
 
 module.exports.saveToDo = async(req, res) => {
+
+    const toDos = await ToDoModel.find()
+
+    if(toDos.length >= 5) {
+        return res.json({success: false, errors: 'You can only have a max of 6 items'});
+    }
 
     const { text } = req.body
 
