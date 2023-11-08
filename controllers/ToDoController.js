@@ -10,7 +10,7 @@ module.exports.saveToDo = async(req, res) => {
     const toDos = await ToDoModel.find()
 
     if(toDos.length >= 5) {
-        return res.json({success: false, errors: 'You can only have a max of 6 items'});
+        return res.json({success: false, errors: 'You can only have a max of 5 items'});
     }
 
     const { text } = req.body
